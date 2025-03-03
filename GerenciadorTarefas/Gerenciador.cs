@@ -95,7 +95,7 @@ namespace GerenciadorTarefas
                 var id = Convert.ToInt32(Console.ReadLine());
                 var manipularXML = new ManipularXML();
 
-                if (manipularXML.SituacaoTarefaXML(id))
+                if (manipularXML.AlterarSituacaoTarefaXML(id))
                 {
                     return true;
                 }

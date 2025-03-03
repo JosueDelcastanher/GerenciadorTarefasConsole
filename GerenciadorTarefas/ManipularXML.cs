@@ -94,7 +94,7 @@ namespace GerenciadorTarefas
                     Select(ConverterParaTarefa).ToList();
         }
 
-        public bool SituacaoTarefaXML(int id)
+        public bool AlterarSituacaoTarefaXML(int id)
         {
             try
             {
@@ -103,7 +103,6 @@ namespace GerenciadorTarefas
                 if (elementoTarefa != null)
                 {
                     Enum.TryParse(elementoTarefa.Element("Situacao")?.Value?.Trim(), true, out Situacao situacaoAtual);
-
                     if (situacaoAtual != Situacao.Concluido)
                     {
                         situacaoAtual = Situacao.Concluido;
@@ -115,12 +114,9 @@ namespace GerenciadorTarefas
                         elementoTarefa.Element("DataConclusao")!.Value = DateTime.MinValue.ToString("dd/MM/yyyy");
                     }
 
-                    if (elementoTarefa != null)
-                    {
-                        elementoTarefa.Element("Situacao")!.Value = situacaoAtual.ToString();
-                        xml.Save(PastaXml);
-                        return true;
-                    }
+                    elementoTarefa.Element("Situacao")!.Value = situacaoAtual.ToString();
+                    xml.Save(PastaXml);
+                    return true;
                 }
             }
             catch (Exception ex)
